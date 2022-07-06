@@ -1,9 +1,10 @@
 from util.query import Query
 
 class ContributionsProvider(Query):
-    def __init__(self, query_path):
+    def __init__(self):
+        query_path = 'queries/contributions.gql'
         super().__init__(query_path)
 
-    def get_contrib_data(self):
-        result = super()._execute({'userName': 'charith47'})
-        print(result)
+    def get_contrib_data(self, user_name):
+        result = super()._execute({'userName': user_name})
+        return result
