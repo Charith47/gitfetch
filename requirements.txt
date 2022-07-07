@@ -1,0 +1,6 @@
+aiohttp==3.8.1
+gql==3.3.0
+python-dotenv==0.20.0
+pyinstaller==5.1
+pyinstaller-hooks-contrib==2022.7
+rich==12.4.4
