@@ -1,4 +1,5 @@
 from rich.console import Console
+from io import StringIO
 
 
 class Graph:
@@ -44,17 +45,15 @@ class Graph:
         return min(self.__range_set, key=lambda boundary: abs(boundary - input_value))
 
     def print_graph(self) -> None:
-        # TODO refactor vars
+        graph_string = StringIO()
         for key, all_day in self.__data.items():
             for per_day in all_day:
                 mapped = self.__to_closest(
                     self.__map_parabolic(0, self.__max_contributions, 0, 250, per_day)
                 )
-                # TODO print a single string
-                self.__console.print(
-                    "■ ", style=f"rgb(0,{mapped+self.__color_offset},0)", end=""
-                )
-            self.__console.print("")
+                graph_string.write(f"[rgb(0,{mapped+self.__color_offset},0)]■[/] ")
+            graph_string.write("\n")
+        self.__console.print(graph_string.getvalue())
 
     def print_raw(self) -> None:
         self.__console.print(self.__data)
